@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html ng-app="todoapp">
 <head>
-    <title>Todo App</title>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <meta charset="utf-8">
+    <title>ShrinkYoUrl</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<div class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">TodoApp</a>
-        </div>
-    </div>
+<!--[if lte IE 8]>
+<p class="browsehappy">Stai usando un broswer <strong>obsoleto</strong>. Per favore <a href="http://browsehappy.com/">aggiorna il tuo broswer</a>.</p>
+<![endif]-->
+<div id="header">
+    <h1 id="title">ShrinkYoUrl</h1>
+    <ul class="nav">
+        <li><a href="views/home.html">Home</a></li>
+        <li><a href="views/stats.html">Stats</a></li>
+    </ul>
 </div>
+
 
 <div class="container" ng-view="">
 
 
 </div>
+
+<div id="footer">Barracchia Emanuele Pio 601514<br>
+    Dibenedetto Ruggiero 601669
+</div>
+
 
 <script src="/js/jquery.js"></script>
 <script src="/js/angular.js"></script>
