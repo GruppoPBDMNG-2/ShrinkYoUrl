@@ -20,12 +20,12 @@ public class Bootstrap {
     }
 
     private static DB mongo() throws Exception {
-        String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
+        String host = System.getenv("192.168.99.100");
         if (host == null) {
             MongoClient mongoClient = new MongoClient("localhost");
-            return mongoClient.getDB("todoapp");
+            return mongoClient.getDB("ceonference");
         }
-        int port = Integer.parseInt(System.getenv("OPENSHIFT_MONGODB_DB_PORT"));
+        int port = Integer.parseInt(System.getenv("27017"));
         String dbname = System.getenv("OPENSHIFT_APP_NAME");
         String username = System.getenv("OPENSHIFT_MONGODB_DB_USERNAME");
         String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");

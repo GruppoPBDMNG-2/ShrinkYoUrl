@@ -21,7 +21,7 @@ public class TodoService {
         //prende il db di mongo
         this.db = db;
         //prende la collection todos. Tutte le operazioni sono sulla collection todos
-        this.collection = db.getCollection("todos");
+        this.collection = db.getCollection("test");
     }
 
     /**
