@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ShrinkYoUrl</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <div id="header">
+        <h1 id="title">ShrinkYoUrl</h1>
+        <ul class="nav">
+            <li class="main_menu"><a href="home.html">Home</a></li>
+            <li class="main_menu"><a href="stats.html">Stats</a></li>
+        </ul>
+    </div>
+
+    <div class="insertUrl" ng-app="">
+        Long Url <input type="text" ng-model="longUrl">
+        Short Url <input type="text" ng-model="shortUrl">
+        <button ng-click="shortUrl = 'generato'">Auto-Generate</button><br><br>
+        <button ng-click="longUrl = 'aggiunto'">Add Short Url</button>
+    </div>
+
+
+
+    <div id="footer">Barracchia Emanuele Pio 601514<br>
+        Dibenedetto Ruggiero 601669
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/angular-route.js"></script>
+    <script src="/js/angular-cookies.js"></script>
+    <script src="/js/angular-sanitize.js"></script>
+    <script src="/js/angular-resource.js"></script>
+
+    <script src="/scripts/app.js"></script>
+</body>
+</html>

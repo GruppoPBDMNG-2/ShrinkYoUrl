@@ -38,18 +38,18 @@
    text-transform: uppercase;
  }
 
- ul{
+ ul.nav{
    list-style: none;
    margin:0;
    padding:0;
    text-align:center;
  }
 
- li{
+ li.main_menu{
    display: inline;
  }
 
- li a{
+ li.main_menu a{
    display:inline-block;
    padding:10px;
    line-height: 50px;
@@ -57,10 +57,16 @@
    color: black;
  }
 
- li a:hover {
+ li.main_menu a:hover {
     text-decoration: underline;
  }
 
  #title {
    text-align: center;
  }
+
+.insertUrl{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
