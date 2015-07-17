@@ -15,11 +15,28 @@
     </ul>
 </div>
 <hr>
+<div class="stats" ng-app="" ng-init="position=[1,15,19,2,40]">
 
-<div class="insertUrl" ng-app="">
-    Search Url <input type="text" ng-model="searchUrl" ng-change="searchUrl = 'funzione per cercare'"> ----> {{searchUrl}}
+    <div>
+        <h2>Most clicked</h2>
+        <ul>
+            <li ng-repeat="x in position">
+                {{ x }}
+            </li>
+        </ul>
+    </div>
+    <hr>
+
+<div>
+    <h2>Stats Url</h2>
+    Search Url <input type="text" ng-model="searchUrl" ng-change="searchUrl = 'funzione per cercare'">
     <br/><br/>
-    <button ng-click="">Visit Url</button>
+    <table style="width: 100%">
+        <tr>
+        <td style="width: 33%">Continent</td><td style="width: 33%">Country</td><td style="width: 33%">City</td>
+    </table>
+
+</div>
 </div>
 
 
