@@ -1,6 +1,5 @@
 package Esempio;
 
-import Esempio.JsonTransformer;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
