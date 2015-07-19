@@ -8,6 +8,7 @@ public class Constants {
     public static final int PORT_SPARK= 8080;
 
     public static final String ADDRESS_MONGO_CONNECTION = "192.168.99.100";
+    public static final String ADDRESS_MONGO_CONNECTION_BOOT2DOCKER = "192.168.59.103";
     public static final String NAME_DB = "shortURL";
     public static final String PORT_DB = "27017";
 

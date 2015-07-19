@@ -4,6 +4,7 @@ import entity.ShortUrl;
 import org.bson.types.ObjectId;
 import utility.Constants;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,11 +68,21 @@ public class DAO {
         return new ShortUrl((BasicDBObject) collection.findOne(new BasicDBObject("_id", new ObjectId(id))));
     }
 
-    private DB mongo() throws Exception {
+    private DB mongo() throws UnknownHostException {
         String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION);
+
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
-            return mongoClient.getDB(Constants.NAME_DB);
+            host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+            if (host == null){
+                MongoClient mongoClient = null;
+                try {
+                    mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
+                } catch (UnknownHostException e) {
+                    mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+                }
+                return mongoClient.getDB(Constants.NAME_DB);
+            }
+
         }
         int port = Integer.parseInt(Constants.PORT_DB);
         MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
