@@ -41,6 +41,7 @@ app.controller('ListCtrl', function ($scope, $http) {
 app.controller('addShortUrl', function ($scope, $http, $location) {
     $scope.todo = {
         done: false
+
     };
 
     $scope.addShortUrl = function () {
