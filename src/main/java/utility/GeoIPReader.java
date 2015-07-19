@@ -1,3 +1,5 @@
+package utility;
+
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
@@ -14,24 +16,43 @@ import java.net.URL;
  * Created by Manu on 15/07/15.
  */
 public class GeoIPReader {
-    public static void main (String[] args) throws IOException, GeoIp2Exception {
+    InetAddress ipAddress;
+    CityResponse response;
+
+    public GeoIPReader(){
         String path = System.getProperty("user.dir") + "/geoip_db/GeoLite2-City.mmdb";
         File database = new File(path);
 
-        DatabaseReader reader = new DatabaseReader.Builder(database).build();
+        try {
+            DatabaseReader reader = new DatabaseReader.Builder(database).build();
+            ipAddress = InetAddress.getByName(getIpAddress());
+            response = reader.city(ipAddress);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (GeoIp2Exception e) {
+            e.printStackTrace();
+        }
 
-
-        InetAddress ipAddress = InetAddress.getByName(getIpAddress());
-        System.out.println(getIpAddress());
-        CityResponse response = reader.city(ipAddress);
-
-
-        System.out.println(response.getCity() + " " + response.getLocation());
-        System.out.println(response.getCountry() + " " + response.getContinent());
 
     }
 
-    public static String getIpAddress()
+    public String getCity(){
+        return String.valueOf(response.getCity());
+    }
+
+    public String getCountry(){
+        return String.valueOf(response.getCountry());
+    }
+
+    public String getContinent(){
+        return String.valueOf(response.getContinent());
+    }
+
+
+
+
+
+    private String getIpAddress()
     {
         URL myIP;
         try {

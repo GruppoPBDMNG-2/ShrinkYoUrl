@@ -1,4 +1,6 @@
 
+import utility.JsonTransformer;
+
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -17,8 +19,8 @@ public class Resource {
             return response;
         }, new JsonTransformer());
 
-        get("/showLongUrl:shortUrl", "applications/json", (request, response)
-                -> (dao.findLongUrl(request.params(":shortUrl"))),new JsonTransformer());
+        get("/showLongUrl:id", "applications/json", (request, response)
+                -> (dao.find(request.params(":id"))),new JsonTransformer());
     }
 
 }
