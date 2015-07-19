@@ -16,7 +16,7 @@
 </div>
 <hr>
 
-<div class="insertUrl" ng-app="">
+<div class="insertUrl" ng-app="myApp" ng-controller="myCtrl">
     Search Url <input type="text" ng-model="searchUrl" ng-change="searchUrl = 'funzione per cercare'"> ----> {{searchUrl}}
     <br/><br/>
     <button ng-click="">Visit Url</button>
@@ -35,5 +35,13 @@
 <script src="../js/angular-resource.js"></script>
 
 <script src="../scripts/app.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.longUrl = "Insert Long Url";
+    $scope.shortUrl = "Insert Short Url";
+});
+</script>
+
 </body>
 </html>
