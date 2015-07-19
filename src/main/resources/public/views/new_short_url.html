@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -38,13 +38,13 @@
     <script src="../js/angular-resource.js"></script>
 
     <script src="../scripts/app.js"></script>
+</script>-->
+<form class="form-horizontal" role="form" ng-submit="addShortUrl()">
+    Long Url <input type="text" ng-model="longUrl">
+    Short Url <input type="text" ng-model="shortUrl">
+    <button type="submit">Auto-Generate</button><br><br>
+    <button ng-click="longUrl = 'aggiunto'">Add Short Url</button>
+</form>
 
-    <script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-    $scope.longUrl = "Insert Long Url";
-    $scope.shortUrl = "Insert Short Url";
-});
-</script>
 </body>
 </html>

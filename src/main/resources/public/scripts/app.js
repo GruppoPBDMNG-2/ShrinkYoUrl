@@ -2,7 +2,7 @@
  * Created by shekhargulati on 10/06/14.
  */
 
-var app = angular.module('todoapp', [
+var app = angular.module('shrinkYoUrl', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -14,8 +14,8 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/list.html',
         controller: 'ListCtrl'
     }).when('/create', {
-        templateUrl: 'views/create.html',
-        controller: 'CreateCtrl'
+        templateUrl: 'views/new_short_url.html',
+        controller: 'addShortUrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -38,14 +38,14 @@ app.controller('ListCtrl', function ($scope, $http) {
     }
 });
 
-app.controller('CreateCtrl', function ($scope, $http, $location) {
+app.controller('addShortUrl', function ($scope, $http, $location) {
     $scope.todo = {
         done: false
     };
 
-    $scope.createTodo = function () {
+    $scope.addShortUrl = function () {
         console.log($scope.todo);
-        $http.post('/api/v1/todos', $scope.todo).success(function (data) {
+        $http.post('addShortUrl', $scope.todo).success(function (data) {
             $location.path('/');
         }).error(function (data, status) {
             console.log('Error ' + data)
