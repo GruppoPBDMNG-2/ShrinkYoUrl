@@ -11,8 +11,8 @@ var app = angular.module('todoapp', [
 
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'views/list.html',
-        controller: 'ListCtrl'
+        templateUrl: 'views/add_short_url.html',
+        controller: 'addCtrl'
     }).when('/create', {
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'
@@ -51,4 +51,17 @@ app.controller('CreateCtrl', function ($scope, $http, $location) {
             console.log('Error ' + data)
         })
     }
+});
+
+app.controller('addCtrl', function($scope, $http, $location) {
+
+
+
+   $scope.addShortUrl = function(){
+         $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
+                    $location.path('/');
+                }).error(function (data, status) {
+                    console.log('Error ' + data)
+                })
+   }
 });
