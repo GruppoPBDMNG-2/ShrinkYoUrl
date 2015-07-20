@@ -55,7 +55,11 @@ app.controller('CreateCtrl', function ($scope, $http, $location) {
 
 app.controller('addCtrl', function($scope, $http, $location) {
 
-
+$scope.shortUrl = {
+        continentsClicks: [],
+        countriesClicks: [],
+        citiesClicks: []
+   }
 
    $scope.addShortUrl = function(){
          $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
