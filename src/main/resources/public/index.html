@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="todoapp">
+<head>
+    <title>ShrinkYoUrl</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="header">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="#/">shrinkYoUrl</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/">Home</a></li>
+                    <li><a ng-href="#/stats">Stats</a></li>
+                    <li><a ng-href="#/">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-view="">
+
+
+</div>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/angular.js"></script>
+<script src="/js/angular-route.js"></script>
+<script src="/js/angular-cookies.js"></script>
+<script src="/js/angular-sanitize.js"></script>
+<script src="/js/angular-resource.js"></script>
+
+<script src="/scripts/app.js"></script>
+</body>
+</html>
