@@ -18,15 +18,6 @@ public class ServerConnection {
         new Resource(dao);
 
 
-        //prova inserimento
-        dao.addShortUrl("{\n" +
-                "    \"urlShort\" : \"www.gl.it\",\n" +
-                "    \"urlLong\" : \"www.google.it\",\n" +
-                "    \"continentsClicks\" : [],\n" +
-                "    \"countriesClicks\" : [],\n" +
-                "    \"citiesClicks\" : []\n" +
-                "}");
-
     }
 
 

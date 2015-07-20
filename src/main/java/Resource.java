@@ -9,6 +9,7 @@ public class Resource {
     private DAO dao;
 
     public Resource(DAO dao){
+        this.dao = dao;
         setupEndPoints();
     }
 
