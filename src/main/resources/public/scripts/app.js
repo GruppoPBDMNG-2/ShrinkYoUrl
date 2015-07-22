@@ -21,6 +21,7 @@ app.config(function ($routeProvider) {
     })
 });
 
+
 app.controller('ListCtrl', function ($scope, $http) {
     $http.get('/api/v1/todos').success(function (data) {
         $scope.todos = data;
@@ -72,6 +73,7 @@ $scope.shortUrl = {
 
    $scope.searchShortUrl = function(){
         $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
+
                         $location.path('/search');
         }).error(function (data, status) {
                               console.log('Error ' + data)
@@ -80,5 +82,9 @@ $scope.shortUrl = {
 });
 
 app.controller('searchCtrl', function($scope, $http){
+    $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
 
+            }).error(function (data, status) {
+                                  console.log('Error ' + data)
+                              })
 });

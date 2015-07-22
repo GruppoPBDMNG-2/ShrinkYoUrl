@@ -1,12 +1,12 @@
 <div>
     <label>ShortUrl: </label>
-    <label>{{shortUrl.short}}</label>
+    <label>{{data.short}}</label>
     <br>
     <label>LongUrl: </label>
-    <label>{{shortUrl.long}}</label>
+    <label>{{data.long}}</label>
     <br>
     <label>Created on: </label>
-    <label>{{shortUrl.createdOn | date:'medium'}}</label>
+    <label>{{data.createdOn | date:'medium'}}</label>
     <br>
 
     <h3>Clicks:</h3>
@@ -17,9 +17,10 @@
             <th>Country</th>
             <th>Continent</th>
         </tr>
+
         <tr ng-repeat="city in cities">
             <td>{{$index+1}}</td>
-            <td>{{city}}</td>
+            <td>{{citiy}}</td>
             <td>{{country}}</td>
             <td>{{continent}}</td>
         </tr>

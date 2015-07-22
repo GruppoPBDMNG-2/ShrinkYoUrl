@@ -24,8 +24,8 @@ public class ShortUrl {
 
     public ShortUrl(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
-        this.urlShort = dbObject.getString("short");
-        this.urlLong = dbObject.getString("long");
+        this.urlShort = dbObject.getString("urlShort");
+        this.urlLong = dbObject.getString("urlLong");
         continentsClicks = new ArrayList<String>();
         countriesClicks = new ArrayList<String>();
         citiesClicks = new ArrayList<String>();
