@@ -13,9 +13,9 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/add_short_url.html',
         controller: 'addCtrl'
-    }).when('/create', {
-        templateUrl: 'views/create.html',
-        controller: 'CreateCtrl'
+    }).when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'searchCtrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -72,9 +72,17 @@ $scope.shortUrl = {
 
    $scope.searchShortUrl = function(){
         $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
-            location.path('/create');
+            location.path('/search');
         }).error(function (data, status) {
                               console.log('Error ' + data)
                           })
    }
+});
+
+app.controller('searchCtrl', function($scope, $http){
+    $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
+                location.path('/search');
+            }).error(function (data, status) {
+                                  console.log('Error ' + data)
+                              })
 });

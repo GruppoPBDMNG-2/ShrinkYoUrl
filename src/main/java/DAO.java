@@ -5,6 +5,7 @@ import org.bson.types.ObjectId;
 import utility.Constants;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +36,8 @@ public class DAO {
                 .append(Constants.URL_LONG_FIELD, shortUrl.getLongUrl())
                 .append(Constants.CONTINENTS_FIELD, shortUrl.getContinents())
                 .append(Constants.COUNTRIES_FIELD, shortUrl.getCountries())
-                .append(Constants.CITIES_FIELD, shortUrl.getCities()));
+                .append(Constants.CITIES_FIELD, shortUrl.getCities())
+                .append(Constants.CREATED_ON_FIELD, new Date()));
 
 
 
@@ -49,7 +51,8 @@ public class DAO {
                         .append(Constants.URL_LONG_FIELD, shortUrl.getLongUrl())
                         .append(Constants.CONTINENTS_FIELD, shortUrl.getContinents())
                         .append(Constants.COUNTRIES_FIELD, shortUrl.getCountries())
-                        .append(Constants.CITIES_FIELD, shortUrl.getCities())));
+                        .append(Constants.CITIES_FIELD, shortUrl.getCities())
+                        .append(Constants.CREATED_ON_FIELD, shortUrl.getCreatedOn())));
         return this.find(id);
     }
 
@@ -64,7 +67,7 @@ public class DAO {
     }
 
     public ShortUrl find(String id){
-        return new ShortUrl((BasicDBObject) collection.findOne(new BasicDBObject("_id", new ObjectId(id))));
+        return new ShortUrl((BasicDBObject) collection.findOne(new BasicDBObject("urlShort", id)));
     }
 
     private DB mongo() throws Exception {

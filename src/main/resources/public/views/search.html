@@ -1,0 +1,27 @@
+<div>
+    <label>ShortUrl: </label>
+    <label>{{shortUrl.short}}</label>
+    <br>
+    <label>LongUrl: </label>
+    <label>{{shortUrl.long}}</label>
+    <br>
+    <label>Created on: </label>
+    <label>{{shortUrl.createdOn | date:'medium'}}</label>
+    <br>
+
+    <h3>Clicks:</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Continent</th>
+        </tr>
+        <tr ng-repeat="city in cities">
+            <td>{{$index+1}}</td>
+            <td>{{city}}</td>
+            <td>{{country}}</td>
+            <td>{{continent}}</td>
+        </tr>
+    </table>
+</div>

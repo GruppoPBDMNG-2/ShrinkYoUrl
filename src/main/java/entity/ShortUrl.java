@@ -5,6 +5,7 @@ import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class ShortUrl {
     private List<String> continentsClicks;
     private List<String> countriesClicks;
     private List<String> citiesClicks;
+    private Date createdOn = new Date();
 
     public ShortUrl(BasicDBObject dbObject) {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
@@ -27,8 +29,12 @@ public class ShortUrl {
         continentsClicks = new ArrayList<String>();
         countriesClicks = new ArrayList<String>();
         citiesClicks = new ArrayList<String>();
+        this.createdOn = dbObject.getDate("createdOn");
     }
 
+    public Date getCreatedOn() {
+        return createdOn;
+    }
 
     public void setUrlShort(String url) {
         this.urlShort = url;

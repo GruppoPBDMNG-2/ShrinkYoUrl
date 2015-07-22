@@ -19,4 +19,5 @@ public class Constants {
     public static final String CONTINENTS_FIELD = "continentsClicks";
     public static final String COUNTRIES_FIELD = "countriesClicks";
     public static final String CITIES_FIELD = "citiesClicks";
+    public static final String CREATED_ON_FIELD = "createdOn";
 }
