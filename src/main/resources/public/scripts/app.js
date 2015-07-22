@@ -64,7 +64,7 @@ $scope.shortUrl = {
 
    $scope.addShortUrl = function(){
          $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
-                    $location.path('/');
+                    $location.html.path('/');
                 }).error(function (data, status) {
                     console.log('Error ' + data)
                 })
@@ -72,7 +72,7 @@ $scope.shortUrl = {
 
    $scope.searchShortUrl = function(){
         $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
-            location.path('/search');
+                        $location.path('/search');
         }).error(function (data, status) {
                               console.log('Error ' + data)
                           })
@@ -80,9 +80,5 @@ $scope.shortUrl = {
 });
 
 app.controller('searchCtrl', function($scope, $http){
-    $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
-                location.path('/search');
-            }).error(function (data, status) {
-                                  console.log('Error ' + data)
-                              })
+
 });
