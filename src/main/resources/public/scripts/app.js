@@ -13,6 +13,9 @@ app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/add_short_url.html',
         controller: 'addCtrl'
+    }).when('/stats', {
+              templateUrl: 'views/stats.html',
+              controller: 'statsCtrl'
     }).when('/create', {
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'
@@ -54,6 +57,23 @@ app.controller('CreateCtrl', function ($scope, $http, $location) {
 });
 
 app.controller('addCtrl', function($scope, $http, $location) {
+
+$scope.shortUrl = {
+        continentsClicks: [],
+        countriesClicks: [],
+        citiesClicks: []
+   }
+
+   $scope.addShortUrl = function(){
+         $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
+                    $location.path('/');
+                }).error(function (data, status) {
+                    console.log('Error ' + data)
+                })
+   }
+});
+
+app.controller('statsCtrl', function($scope, $http, $location) {
 
 $scope.shortUrl = {
         continentsClicks: [],
