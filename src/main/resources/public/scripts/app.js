@@ -71,7 +71,7 @@ $scope.shortUrl = {
    }
 
    $scope.searchShortUrl = function(){
-        $http.get('/showLongUrl/pippo.html').success(function(data){
+        $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
             location.path('/create');
         }).error(function (data, status) {
                               console.log('Error ' + data)
