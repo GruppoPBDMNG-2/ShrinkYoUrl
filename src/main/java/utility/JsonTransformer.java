@@ -12,7 +12,9 @@ public class JsonTransformer implements ResponseTransformer {
 
     @Override
     public String render(Object model) {
+        if (model instanceof Response) {
+            return gson.toJson(new HashMap<>());
+        }
         return gson.toJson(model);
     }
-
 }
