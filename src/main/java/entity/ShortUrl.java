@@ -3,6 +3,7 @@ package entity;
 import com.google.gson.annotations.SerializedName;
 import com.mongodb.BasicDBObject;
 import org.bson.types.ObjectId;
+import utility.Constants;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,9 +27,16 @@ public class ShortUrl {
         this.id = ((ObjectId) dbObject.get("_id")).toString();
         this.urlShort = dbObject.getString("urlShort");
         this.urlLong = dbObject.getString("urlLong");
-        continentsClicks = new ArrayList<String>();
-        countriesClicks = new ArrayList<String>();
-        citiesClicks = new ArrayList<String>();
+        if(dbObject.get(Constants.CONTINENTS_FIELD) == null){
+
+            continentsClicks = new ArrayList<String>();
+            countriesClicks = new ArrayList<String>();
+            citiesClicks = new ArrayList<String>();
+        } else {
+            continentsClicks = (List<String>) dbObject.get(Constants.CONTINENTS_FIELD);
+            countriesClicks = (List<String>) dbObject.get(Constants.COUNTRIES_FIELD);
+            citiesClicks = (List<String>) dbObject.get(Constants.CITIES_FIELD);
+        }
         this.createdOn = dbObject.getDate("createdOn");
     }
 
