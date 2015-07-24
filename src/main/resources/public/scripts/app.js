@@ -11,11 +11,16 @@ var app = angular.module('todoapp', [
 
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
+        templateUrl: 'views/home.html'
+    }).when('/create', {
         templateUrl: 'views/add_short_url.html',
         controller: 'addCtrl'
     }).when('/search', {
         templateUrl: 'views/search.html',
         controller: 'searchCtrl'
+    }).when('/visit', {
+        templateUrl: 'views/visit.html',
+        controller: 'visitCtrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -65,26 +70,34 @@ $scope.shortUrl = {
 
    $scope.addShortUrl = function(){
          $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
-                    $location.html.path('/');
+                    $location.path('/');
                 }).error(function (data, status) {
                     console.log('Error ' + data)
                 })
    }
 
-   $scope.searchShortUrl = function(){
-        $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
 
-                        $location.path('/search');
-        }).error(function (data, status) {
-                              console.log('Error ' + data)
-                          })
-   }
 });
 
 app.controller('searchCtrl', function($scope, $http){
-    $http.get('/showLongUrl/' + $scope.urlShortSearch).success(function(data){
-
+    $scope.searchShortUrl = function(){
+            $http.get('/searchUrl/' + $scope.urlShortSearch).success(function(data){
+                $scope.data = data;
+                $scope.cities = data.citiesClicks;
+                $scope.countries = data.countriesClicks;
+                $scope.continents = data.continentsClicks;
             }).error(function (data, status) {
                                   console.log('Error ' + data)
                               })
+       }
+});
+
+app.controller('visitCtrl', function($scope, $http){
+    $scope.visitShortUrl = function(){
+        $http.get('/searchUrl/' + $scope.urlToVisit).success(function(data){
+            $scope.data = data;
+
+            window.location.href = "http://"+ data.urlLong;
+        })
+    }
 });

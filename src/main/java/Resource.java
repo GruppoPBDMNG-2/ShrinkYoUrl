@@ -20,7 +20,7 @@ public class Resource {
             return response;
         }, new JsonTransformer());
 
-        get("/showLongUrl/:id", "applications/json", (request, response)
+        get("/searchUrl/:id", "applications/json", (request, response)
                 -> (dao.find(request.params(":id"))),new JsonTransformer());
 
     }
