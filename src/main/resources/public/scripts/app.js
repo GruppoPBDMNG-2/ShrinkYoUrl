@@ -96,8 +96,9 @@ app.controller('visitCtrl', function($scope, $http){
     $scope.visitShortUrl = function(){
         $http.get('/searchUrl/' + $scope.urlToVisit).success(function(data){
             $scope.data = data;
-
-            window.location.href = "http://"+ data.urlLong;
+            $http.post('/visitUrl/' + $scope.urlToVisit).success(function(data2){
+                window.location.href = "http://"+ data.urlLong;
+            })
         })
     }
 });

@@ -3,6 +3,7 @@ import com.mongodb.*;
 import entity.ShortUrl;
 import org.bson.types.ObjectId;
 import utility.Constants;
+import utility.GeoIPReader;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,14 +45,23 @@ public class DAO {
 
     }
 
-    public ShortUrl update(String id, String body){
-        ShortUrl shortUrl = new Gson().fromJson(body, ShortUrl.class);
-        collection.update(new BasicDBObject("_id", new ObjectId(id)),
+    public ShortUrl update(String id){
+        ShortUrl shortUrl = find(id);
+        List<String> continentsClick = shortUrl.getContinents();
+        List<String> countriesClick = shortUrl.getCountries();
+        List<String> citiesClick = shortUrl.getCities();
+        GeoIPReader geoIPReader = new GeoIPReader();
+        continentsClick.add(continentsClick.size(), geoIPReader.getContinent());
+        countriesClick.add(countriesClick.size(), geoIPReader.getCountry());
+        citiesClick.add(citiesClick.size(), geoIPReader.getCity());
+
+
+        collection.update(new BasicDBObject(Constants.URL_SHORT_FIELD, shortUrl.getShortUrl()),
                 new BasicDBObject("$set", new BasicDBObject(Constants.URL_SHORT_FIELD, shortUrl.getShortUrl())
                         .append(Constants.URL_LONG_FIELD, shortUrl.getLongUrl())
-                        .append(Constants.CONTINENTS_FIELD, shortUrl.getContinents())
-                        .append(Constants.COUNTRIES_FIELD, shortUrl.getCountries())
-                        .append(Constants.CITIES_FIELD, shortUrl.getCities())
+                        .append(Constants.CONTINENTS_FIELD, continentsClick)
+                        .append(Constants.COUNTRIES_FIELD, countriesClick)
+                        .append(Constants.CITIES_FIELD, citiesClick)
                         .append(Constants.CREATED_ON_FIELD, shortUrl.getCreatedOn())));
         return this.find(id);
     }
@@ -71,9 +81,9 @@ public class DAO {
     }
 
     private DB mongo() throws Exception {
-        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION);
+        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
+            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
             return mongoClient.getDB(Constants.NAME_DB);
         }
 

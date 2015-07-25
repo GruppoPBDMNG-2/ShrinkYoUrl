@@ -20,6 +20,9 @@ public class Resource {
             return response;
         }, new JsonTransformer());
 
+        post("/visitUrl/:id", "applications/json", (request, response)
+                ->(dao.update(request.params(":id"))), new JsonTransformer());
+
         get("/searchUrl/:id", "applications/json", (request, response)
                 -> (dao.find(request.params(":id"))),new JsonTransformer());
 
