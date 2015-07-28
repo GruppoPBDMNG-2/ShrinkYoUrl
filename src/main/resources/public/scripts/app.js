@@ -68,6 +68,16 @@ $scope.shortUrl = {
         citiesClicks: []
    }
 
+   $scope.autoGenerate  = function() {
+        $http.get('/autoGenerate/' + $scope.shortUrl.urlLong).success(function(data){
+                        var str = data;
+                        var res = str.substring(1, str.length-1);
+                        $scope.shortUrl.urlShort = res;
+                    }).error(function (data, status) {
+                                          console.log('Error ' + data)
+                                      })
+   }
+
    $scope.addShortUrl = function(){
          $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
                     $location.path('/');
@@ -75,6 +85,8 @@ $scope.shortUrl = {
                     console.log('Error ' + data)
                 })
    }
+
+
 
 
 });

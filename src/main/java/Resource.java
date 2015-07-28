@@ -23,6 +23,9 @@ public class Resource {
         post("/visitUrl/:id", "applications/json", (request, response)
                 ->(dao.update(request.params(":id"))), new JsonTransformer());
 
+        get("/autoGenerate/:id", "applications/json", (request, response)
+                -> (dao.autoGenerate(request.params(":id"))), new JsonTransformer());
+
         get("/searchUrl/:id", "applications/json", (request, response)
                 -> (dao.find(request.params(":id"))),new JsonTransformer());
 
