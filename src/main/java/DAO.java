@@ -81,9 +81,9 @@ public class DAO {
     }
 
     private DB mongo() throws Exception {
-        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION);
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
             return mongoClient.getDB(Constants.NAME_DB);
         }
 
