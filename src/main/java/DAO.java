@@ -8,6 +8,7 @@ import utility.GeoIPReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Manu on 17/07/15.
@@ -74,6 +75,19 @@ public class DAO {
             urls.add(new ShortUrl((BasicDBObject) dbObject));
         }
         return urls;
+    }
+
+    public String autoGenerate(String id){
+        String string = new String("http://shrinkYo.Url/");
+        final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random rnd = new Random();
+            StringBuilder sb = new StringBuilder(6);
+        do {
+            for (int i = 0; i < 6; i++)
+                sb.append(AB.charAt(rnd.nextInt(AB.length())));
+        } while (collection.findOne(new BasicDBObject("urlShort", sb.toString())) != null);
+        string += sb;
+        return string;
     }
 
     public ShortUrl find(String id){
