@@ -129,5 +129,44 @@ app.controller('statsCtrl', function($scope, $http){
         console.log('Error ' + data);
     })
 
+    var contAmer = new String("America");
+    $http.get('/statsGlobal/getUrls/' + contAmer).success(function(data){
+            $scope.urlsAmer = data;
+            $http.get('/statsGlobal/getCounts/' + contAmer).success(function(data){
+                $scope.countsAmer = data;
+            })
+        }).error(function(data, status){
+            console.log('Error ' + data);
+        })
+
+    var contAsia = new String("Asia");
+        $http.get('/statsGlobal/getUrls/' + contAsia).success(function(data){
+            $scope.urlsAsia = data;
+            $http.get('/statsGlobal/getCounts/' + contAsia).success(function(data){
+                $scope.countsAsia = data;
+            })
+        }).error(function(data, status){
+            console.log('Error ' + data);
+        })
+
+    var contEur = new String("Europe");
+        $http.get('/statsGlobal/getUrls/' + contEur).success(function(data){
+            $scope.urlsEur = data;
+            $http.get('/statsGlobal/getCounts/' + contEur).success(function(data){
+                $scope.countsEur = data;
+            })
+        }).error(function(data, status){
+            console.log('Error ' + data);
+        })
+
+    var contAfr = new String("Africa");
+        $http.get('/statsGlobal/getUrls/' + contAfr).success(function(data){
+            $scope.urlsAfrica = data;
+            $http.get('/statsGlobal/getCounts/' + contAfr).success(function(data){
+                $scope.countsAfrica = data;
+            })
+        }).error(function(data, status){
+            console.log('Error ' + data);
+        })
 
 });

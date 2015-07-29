@@ -1,4 +1,4 @@
-<h2>Most clicked</h2>
+<h2>Most clicked in the world</h2>
 <table class="table table-hover">
     <tr>
         <th>#</th>
@@ -13,8 +13,14 @@
         <td>{{url.urlLong}}</td>
         <td>{{counts[$index]}}</td>
     </tr>
+    <tr ng-show="!urls.length">
+        <td colspan="4"><i>No urls found...</i></td>
+    </tr>
 </table>
-<div style="width: 40%; float: left">
+<br>
+
+<div style="width: 49%; float: left">
+    <h3>Most clicked in America</h3>
     <table class="table table-hover">
         <tr>
             <th>#</th>
@@ -23,15 +29,20 @@
             <th># of Clicks</th>
         </tr>
 
-        <tr ng-repeat="url in urls">
+        <tr ng-repeat="url in urlsAmer">
             <td>{{$index+1}}</td>
             <td>{{url.urlShort}}</td>
             <td>{{url.urlLong}}</td>
-            <td>{{counts[$index]}}</td>
+            <td>{{countsAmer[$index]}}</td>
+        </tr>
+        <tr ng-show="!urlsAmer.length">
+            <td colspan="4"><i>No urls found...</i></td>
         </tr>
     </table>
 </div>
-<div style="width: 40%">
+
+<div style="width: 49%; float: right">
+    <h3>Most clicked in Asia</h3>
     <table class="table table-hover">
         <tr>
             <th>#</th>
@@ -40,11 +51,85 @@
             <th># of Clicks</th>
         </tr>
 
-        <tr ng-repeat="url in urls">
+        <tr ng-repeat="url in urlsAsia">
             <td>{{$index+1}}</td>
             <td>{{url.urlShort}}</td>
             <td>{{url.urlLong}}</td>
-            <td>{{counts[$index]}}</td>
+            <td>{{countsAsia[$index]}}</td>
+        </tr>
+        <tr ng-show="!urlsAsia.length">
+            <td colspan="4"><i>No urls found...</i></td>
         </tr>
     </table>
 </div>
+<br>
+
+<div style="width: 49%; float: left">
+    <h3>Most clicked in Europe</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>ShortURL</th>
+            <th>LongURL</th>
+            <th># of Clicks</th>
+        </tr>
+
+        <tr ng-repeat="url in urlsEur">
+            <td>{{$index+1}}</td>
+            <td>{{url.urlShort}}</td>
+            <td>{{url.urlLong}}</td>
+            <td>{{countsEur[$index]}}</td>
+        </tr>
+        <tr ng-show="!urlsEur.length">
+            <td colspan="4"><i>No urls found...</i></td>
+        </tr>
+    </table>
+</div>
+
+<div style="width: 49%; float: right">
+    <h3>Most clicked in Oceania</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>ShortURL</th>
+            <th>LongURL</th>
+            <th># of Clicks</th>
+        </tr>
+
+        <tr ng-repeat="url in urlsOce">
+            <td>{{$index+1}}</td>
+            <td>{{url.urlShort}}</td>
+            <td>{{url.urlLong}}</td>
+            <td>{{countsOce[$index]}}</td>
+        </tr>
+        <tr ng-show="!urlsOce.length">
+            <td colspan="4"><i>No urls found...</i></td>
+        </tr>
+    </table>
+</div>
+
+<br>
+
+<div style="width: 49%; float: left">
+    <h3>Most clicked in Africa</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>#</th>
+            <th>ShortURL</th>
+            <th>LongURL</th>
+            <th># of Clicks</th>
+        </tr>
+
+        <tr ng-repeat="url in urlsAfrica">
+            <td>{{$index+1}}</td>
+            <td>{{url.urlShort}}</td>
+            <td>{{url.urlLong}}</td>
+            <td>{{countsAfrica[$index]}}</td>
+        </tr>
+        <tr ng-show="!urlsAfrica.length">
+            <td colspan="4"><i>No urls found...</i></td>
+        </tr>
+    </table>
+</div>
+
+

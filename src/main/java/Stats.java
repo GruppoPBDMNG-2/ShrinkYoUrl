@@ -44,17 +44,7 @@ public class Stats {
         }
         Map mapSorted = MapUtil.sortByValue(map);
 
-        //DA QUI prende i dati per stamparli
-        Set list = mapSorted.keySet();
-        Iterator iter = list.iterator();
 
-        while (iter.hasNext()){
-            Object key = iter.next();
-            ShortUrl url = (ShortUrl) key;
-            Integer count = (Integer) mapSorted.get(key);
-            System.out.println(url.getShortUrl() + " count " + count);
-        }
-        //FINO A QUIAggiunteAggiun
         return mapSorted;
     }
 
@@ -74,7 +64,12 @@ public class Stats {
         while (iter.hasNext()) {
             Object key = iter.next();
             ShortUrl url = (ShortUrl) key;
-            urls.add(url);
+            if (urls.size() <= 10){
+                urls.add(url);
+            } else {
+                break;
+            }
+
         }
         return urls;
     }
@@ -82,7 +77,7 @@ public class Stats {
     public List<Integer> getCountsMostClicked(String cont){
         List<Integer> counts = new ArrayList<>();
         Map mapSorted;
-        if (cont.equals("")){
+        if (cont.equals("all")){
             mapSorted = mostClicked();
         } else {
             mapSorted = mostClicked(cont);
@@ -94,7 +89,12 @@ public class Stats {
         while (iter.hasNext()) {
             Object key = iter.next();
             Integer count = (Integer) mapSorted.get(key);
-            counts.add(count);
+            if (counts.size() <= 10){
+                counts.add(count);
+            } else {
+                break;
+            }
+
         }
         return counts;
     }
