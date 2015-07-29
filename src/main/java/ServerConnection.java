@@ -17,7 +17,6 @@ public class ServerConnection {
         DAO dao = new DAO();
         new Resource(dao);
 
-
     }
 
 
