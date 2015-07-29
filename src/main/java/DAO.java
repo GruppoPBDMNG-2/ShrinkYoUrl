@@ -4,6 +4,7 @@ import entity.ShortUrl;
 import org.bson.types.ObjectId;
 import utility.Constants;
 import utility.GeoIPReader;
+import utility.RandomString;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,9 +42,6 @@ public class DAO {
                 .append(Constants.CITIES_FIELD, shortUrl.getCities())
                 .append(Constants.CREATED_ON_FIELD, new Date()));
 
-
-
-
     }
 
     public ShortUrl update(String id){
@@ -79,14 +77,12 @@ public class DAO {
 
     public String autoGenerate(String id){
         String string = new String("http://shrinkYo.Url/");
-        final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random rnd = new Random();
-            StringBuilder sb = new StringBuilder(6);
+        String shortUrl;
+        RandomString randomString = new RandomString();
         do {
-            for (int i = 0; i < 6; i++)
-                sb.append(AB.charAt(rnd.nextInt(AB.length())));
-        } while (collection.findOne(new BasicDBObject("urlShort", sb.toString())) != null);
-        string += sb;
+            shortUrl = randomString.randomString();
+        } while (collection.findOne(new BasicDBObject("urlShort", shortUrl)) != null);
+        string += shortUrl;
         return string;
     }
 
