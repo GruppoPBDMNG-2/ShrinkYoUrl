@@ -21,6 +21,9 @@ app.config(function ($routeProvider) {
     }).when('/visit', {
         templateUrl: 'views/visit.html',
         controller: 'visitCtrl'
+    }).when('/stats', {
+        templateUrl: 'views/stats.html',
+        controller: 'statsCtrl'
     }).otherwise({
         redirectTo: '/'
     })
@@ -113,4 +116,18 @@ app.controller('visitCtrl', function($scope, $http){
             })
         })
     }
+});
+
+app.controller('statsCtrl', function($scope, $http){
+    var cont = new String("all");
+    $http.get('/statsGlobal/getUrls/' + cont).success(function(data){
+        $scope.urls = data;
+        $http.get('/statsGlobal/getCounts/' + cont).success(function(data){
+            $scope.counts = data;
+        })
+    }).error(function(data, status){
+        console.log('Error ' + data);
+    })
+
+
 });

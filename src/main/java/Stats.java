@@ -58,4 +58,45 @@ public class Stats {
         return mapSorted;
     }
 
+    public List<ShortUrl> getShortUrlMostClicked(String cont){
+        List<ShortUrl> urls = new ArrayList<>();
+
+        Map mapSorted;
+        if (cont.equals("all")){
+            mapSorted = mostClicked();
+        } else {
+            mapSorted = mostClicked(cont);
+        }
+
+        Set list = mapSorted.keySet();
+        Iterator iter = list.iterator();
+
+        while (iter.hasNext()) {
+            Object key = iter.next();
+            ShortUrl url = (ShortUrl) key;
+            urls.add(url);
+        }
+        return urls;
+    }
+
+    public List<Integer> getCountsMostClicked(String cont){
+        List<Integer> counts = new ArrayList<>();
+        Map mapSorted;
+        if (cont.equals("")){
+            mapSorted = mostClicked();
+        } else {
+            mapSorted = mostClicked(cont);
+        }
+
+        Set list = mapSorted.keySet();
+        Iterator iter = list.iterator();
+
+        while (iter.hasNext()) {
+            Object key = iter.next();
+            Integer count = (Integer) mapSorted.get(key);
+            counts.add(count);
+        }
+        return counts;
+    }
+
 }

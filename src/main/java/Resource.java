@@ -7,6 +7,7 @@ import static spark.Spark.post;
 public class Resource {
 
     private DAO dao;
+    private Stats stats = new Stats();
 
     public Resource(DAO dao){
         this.dao = dao;
@@ -28,6 +29,12 @@ public class Resource {
 
         get("/searchUrl/:id", "applications/json", (request, response)
                 -> (dao.find(request.params(":id"))),new JsonTransformer());
+
+        get("/statsGlobal/getUrls/:cont", "applications/json", (request, response)
+                -> (stats.getShortUrlMostClicked(request.params(":cont"))), new JsonTransformer());
+
+        get("/statsGlobal/getCounts/:cont",  "applications/json", (request, response)
+                -> (stats.getCountsMostClicked(request.params(":cont"))), new JsonTransformer());
 
     }
 
