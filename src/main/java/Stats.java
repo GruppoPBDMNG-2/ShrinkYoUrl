@@ -8,8 +8,16 @@ import java.util.*;
  * Created by Manu on 28/07/15.
  */
 public class Stats {
+    private int numClickUrl;
+    private int numClickEur;
+    private int numClickAmer;
+    private int numClickAfr;
+    private int numClickOce;
+    private int numClickAsia;
 
-    public Map<ShortUrl, Integer> mostClicked(){
+
+
+    private Map<ShortUrl, Integer> mostClicked(){
         DAO dao = new DAO();
         List<ShortUrl> urls = dao.findAll();
 
@@ -25,7 +33,7 @@ public class Stats {
         return mapSorted;
     }
 
-    public Map<ShortUrl, Integer> mostClicked(String cont){
+    private Map<ShortUrl, Integer> mostClicked(String cont){
         DAO dao = new DAO();
         List<ShortUrl> urls = dao.findAll();
 
@@ -48,7 +56,7 @@ public class Stats {
         return mapSorted;
     }
 
-    public List<ShortUrl> getShortUrlMostClicked(String cont){
+    public List<ShortUrl> getShortUrlsMostClicked(String cont){
         List<ShortUrl> urls = new ArrayList<>();
 
         Map mapSorted;
@@ -97,6 +105,41 @@ public class Stats {
 
         }
         return counts;
+    }
+
+    public List<Integer> statsShortUrl(String shortUrl) {
+        DAO dao = new DAO();
+        ShortUrl url = dao.find(shortUrl);
+        List<Integer> list = new ArrayList<>();
+
+        //inizializzazione contatori
+        numClickUrl = url.getContinents().size();
+        numClickEur = 0;
+        numClickAmer = 0;
+        numClickAfr = 0;
+        numClickOce = 0;
+        numClickAsia = 0;
+
+        for (int i = 0; i < url.getContinents().size(); i++) {
+            if (url.getContinents().get(i).equals("Europe")) {
+                numClickEur++;
+            } else if (url.getContinents().get(i).equals("America")) {
+                numClickAmer++;
+            } else if (url.getContinents().get(i).equals("Asia")) {
+                numClickAsia++;
+            } else if (url.getContinents().get(i).equals("Africa")) {
+                numClickAfr++;
+            } else if (url.getContinents().get(i).equals("Oceania")) {
+                numClickOce++;
+            }
+        }
+        list.add(numClickUrl);
+        list.add(numClickEur);
+        list.add(numClickAmer);
+        list.add(numClickAsia);
+        list.add(numClickAfr);
+        list.add(numClickOce);
+        return list;
     }
 
 }

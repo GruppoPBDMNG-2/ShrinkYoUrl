@@ -15,13 +15,13 @@ import java.util.Random;
  * Created by Manu on 17/07/15.
  */
 public class DAO {
-    private static DAO dao = null;
     private DB db;
 
     private DBCollection collection;
 
     public DAO() {
         try {
+
             this.db = mongo();
 
             this.collection = db.getCollection(Constants.NAME_COLLECTION);

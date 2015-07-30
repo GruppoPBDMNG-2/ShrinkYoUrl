@@ -20,4 +20,11 @@ public class Constants {
     public static final String COUNTRIES_FIELD = "countriesClicks";
     public static final String CITIES_FIELD = "citiesClicks";
     public static final String CREATED_ON_FIELD = "createdOn";
+
+    public static final int LIST_CLICKS_ALL = 0;
+    public static final int LIST_CLICKS_EUROPE = 1;
+    public static final int LIST_CLICKS_AMERICA = 2;
+    public static final int LIST_CLICKS_ASIA = 3;
+    public static final int LIST_CLICKS_AFRICA = 4;
+    public static final int LIST_CLICKS_OCEANIA = 5;
 }

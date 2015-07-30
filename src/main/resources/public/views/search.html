@@ -14,7 +14,7 @@
         </div>
     </div>
 </form>
-<div>
+<div ng-show="bool">
     <label>ShortUrl: </label>
     <label>{{data.urlShort}}</label>
     <br>
@@ -25,6 +25,15 @@
     <label>{{data.createdOn | date:'medium'}}</label>
     <br>
 
+    <h3>Stats</h3>
+    <label># Clicks: &nbsp;</label><label>{{stats[0]}}</label><br>
+    <label># Clicks from Europe: &nbsp;</label><label>{{stats[1]}}</label><br>
+    <label># Clicks from America: &nbsp;</label><label>{{stats[2]}}</label><br>
+    <label># Clicks from Asia: &nbsp;</label><label>{{stats[3]}}</label><br>
+    <label># Clicks from Africa: &nbsp;</label><label>{{stats[4]}}</label><br>
+    <label># Clicks from Oceania: &nbsp;</label><label>{{stats[5]}}</label><br>
+
+    <br>
     <h3>Clicks:</h3>
     <table class="table table-hover">
         <tr>
@@ -39,6 +48,9 @@
             <td>{{city}}</td>
             <td>{{countries[$index]}}</td>
             <td>{{continents[$index]}}</td>
+        </tr>
+        <tr ng-show="!cities.length">
+            <td colspan="4"><i>No recent clicks...</i></td>
         </tr>
     </table>
 </div>

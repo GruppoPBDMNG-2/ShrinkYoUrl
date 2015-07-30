@@ -30,8 +30,11 @@ public class Resource {
         get("/searchUrl/:id", "applications/json", (request, response)
                 -> (dao.find(request.params(":id"))),new JsonTransformer());
 
+        get("/statsUrl/:id", "applications/json", (request, response)
+                -> (stats.statsShortUrl(request.params(":id"))), new JsonTransformer());
+
         get("/statsGlobal/getUrls/:cont", "applications/json", (request, response)
-                -> (stats.getShortUrlMostClicked(request.params(":cont"))), new JsonTransformer());
+                -> (stats.getShortUrlsMostClicked(request.params(":cont"))), new JsonTransformer());
 
         get("/statsGlobal/getCounts/:cont",  "applications/json", (request, response)
                 -> (stats.getCountsMostClicked(request.params(":cont"))), new JsonTransformer());

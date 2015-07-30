@@ -95,15 +95,23 @@ $scope.shortUrl = {
 });
 
 app.controller('searchCtrl', function($scope, $http){
+    $scope.bool = false;
     $scope.searchShortUrl = function(){
             $http.get('/searchUrl/' + $scope.urlShortSearch).success(function(data){
                 $scope.data = data;
+                $scope.bool = true;
                 $scope.cities = data.citiesClicks;
                 $scope.countries = data.countriesClicks;
                 $scope.continents = data.continentsClicks;
             }).error(function (data, status) {
                                   console.log('Error ' + data)
                               })
+
+            $http.get('/statsUrl/' + $scope.urlShortSearch).success(function(data){
+                $scope.stats = data;
+            }).error(function (data, status) {
+                console.log('Error ' + data)
+            })
        }
 });
 
@@ -168,5 +176,15 @@ app.controller('statsCtrl', function($scope, $http){
         }).error(function(data, status){
             console.log('Error ' + data);
         })
+
+    var contOce = new String("Oceania");
+        $http.get('/statsGlobal/getUrls/' + contOce).success(function(data){
+                $scope.urlsOce = data;
+                $http.get('/statsGlobal/getCounts/' + contOce).success(function(data){
+                    $scope.countsOce = data;
+                })
+            }).error(function(data, status){
+                console.log('Error ' + data);
+            })
 
 });
