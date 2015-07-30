@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.mongodb.*;
 import entity.ShortUrl;
 import org.bson.types.ObjectId;
+import utility.BadWords;
 import utility.Constants;
 import utility.GeoIPReader;
 import utility.RandomString;
@@ -34,7 +35,6 @@ public class DAO {
 
     public void addShortUrl(String body) {
         ShortUrl shortUrl = new Gson().fromJson(body, ShortUrl.class);
-
         collection.insert(new BasicDBObject(Constants.URL_SHORT_FIELD, shortUrl.getShortUrl())
                 .append(Constants.URL_LONG_FIELD, shortUrl.getLongUrl())
                 .append(Constants.CONTINENTS_FIELD, shortUrl.getContinents())
@@ -91,9 +91,9 @@ public class DAO {
     }
 
     private DB mongo() throws Exception {
-        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION);
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
             return mongoClient.getDB(Constants.NAME_DB);
         }
 

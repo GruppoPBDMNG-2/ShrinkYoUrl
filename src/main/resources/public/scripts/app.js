@@ -82,11 +82,20 @@ $scope.shortUrl = {
    }
 
    $scope.addShortUrl = function(){
-         $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
-                    $location.path('/');
-                }).error(function (data, status) {
-                    console.log('Error ' + data)
-                })
+         $http.get('/checkBadWords/' + $scope.shortUrl.urlShort).success(function(data){
+            if(data){
+                $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
+                                                $location.path('/');
+                                                alert("ShortUrl creato");
+                                            }).error(function (data, status) {
+                                                console.log('Error ' + data)
+                                            })
+            }
+
+         }).error(function(data, status){
+            console.log('Error ' + data)
+         })
+
    }
 
 
@@ -104,7 +113,8 @@ app.controller('searchCtrl', function($scope, $http){
                 $scope.countries = data.countriesClicks;
                 $scope.continents = data.continentsClicks;
             }).error(function (data, status) {
-                                    alert("Nessun indirizzo trovato");
+                                  alert("Nessun indirizzo trovato");
+                                  $scope.bool = false;
                                   console.log('Error ' + data)
                               })
 
@@ -121,9 +131,12 @@ app.controller('visitCtrl', function($scope, $http){
         $http.get('/searchUrl/' + $scope.urlToVisit).success(function(data){
             $scope.data = data;
             $http.post('/visitUrl/' + $scope.urlToVisit).success(function(data2){
-                window.location.href = "http://"+ data.urlLong;
+                window.location.href = "" + data.urlLong;
             })
-        })
+        }).error(function (data,status) {
+                          alert("ShortURL non valido");
+                          console.log('Error ' + data)
+                      })
     }
 });
 

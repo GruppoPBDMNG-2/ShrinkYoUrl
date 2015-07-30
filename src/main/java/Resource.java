@@ -1,4 +1,5 @@
 
+import utility.BadWords;
 import utility.JsonTransformer;
 
 import static spark.Spark.get;
@@ -8,6 +9,7 @@ public class Resource {
 
     private DAO dao;
     private Stats stats = new Stats();
+    private BadWords badWords = new BadWords();
 
     public Resource(DAO dao){
         this.dao = dao;
@@ -38,6 +40,9 @@ public class Resource {
 
         get("/statsGlobal/getCounts/:cont",  "applications/json", (request, response)
                 -> (stats.getCountsMostClicked(request.params(":cont"))), new JsonTransformer());
+
+        get("/checkBadWords/:string",  "applications/json", (request, response)
+                -> (badWords.checkString(request.params(":string"))), new JsonTransformer());
 
     }
 
