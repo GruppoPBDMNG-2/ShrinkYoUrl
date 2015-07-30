@@ -104,6 +104,7 @@ app.controller('searchCtrl', function($scope, $http){
                 $scope.countries = data.countriesClicks;
                 $scope.continents = data.continentsClicks;
             }).error(function (data, status) {
+                                    alert("Nessun indirizzo trovato");
                                   console.log('Error ' + data)
                               })
 
