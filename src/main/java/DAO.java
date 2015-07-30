@@ -2,10 +2,7 @@ import com.google.gson.Gson;
 import com.mongodb.*;
 import entity.ShortUrl;
 import org.bson.types.ObjectId;
-import utility.BadWords;
-import utility.Constants;
-import utility.GeoIPReader;
-import utility.RandomString;
+import utility.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,6 +42,8 @@ public class DAO {
     }
 
     public ShortUrl update(String id){
+        ResetString resetString = new ResetString();
+        id = resetString.resetString(id);
         ShortUrl shortUrl = find(id);
         List<String> continentsClick = shortUrl.getContinents();
         List<String> countriesClick = shortUrl.getCountries();
@@ -87,13 +86,15 @@ public class DAO {
     }
 
     public ShortUrl find(String id){
+        ResetString resetString = new ResetString();
+        id = resetString.resetString(id);
         return new ShortUrl((BasicDBObject) collection.findOne(new BasicDBObject("urlShort", id)));
     }
 
     private DB mongo() throws Exception {
-        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION);
+        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
+            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
             return mongoClient.getDB(Constants.NAME_DB);
         }
 

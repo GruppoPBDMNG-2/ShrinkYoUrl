@@ -13,6 +13,8 @@ public class BadWords {
      * @return true if s doesn't contains bad words, false otherwise
      */
     public boolean checkString(String s){
+        ResetString resetString = new ResetString();
+        s = resetString.resetString(s);
         for (int i= 0; i < badWords.length; i++){
             if (s.toLowerCase().contains(badWords[i].toLowerCase())){
                 return false;

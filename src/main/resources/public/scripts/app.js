@@ -82,7 +82,9 @@ $scope.shortUrl = {
    }
 
    $scope.addShortUrl = function(){
-         $http.get('/checkBadWords/' + $scope.shortUrl.urlShort).success(function(data){
+         var str = $scope.shortUrl.urlShort;
+         var res = str.split('/').join('*');
+         $http.get('/checkBadWords/' + res).success(function(data){
             if(data){
                 $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
                                                 $location.path('/');
@@ -106,7 +108,9 @@ $scope.shortUrl = {
 app.controller('searchCtrl', function($scope, $http){
     $scope.bool = false;
     $scope.searchShortUrl = function(){
-            $http.get('/searchUrl/' + $scope.urlShortSearch).success(function(data){
+            var str = $scope.urlShortSearch;
+             var res = str.split('/').join('*');
+            $http.get('/searchUrl/' + res).success(function(data){
                 $scope.data = data;
                 $scope.bool = true;
                 $scope.cities = data.citiesClicks;
@@ -118,7 +122,7 @@ app.controller('searchCtrl', function($scope, $http){
                                   console.log('Error ' + data)
                               })
 
-            $http.get('/statsUrl/' + $scope.urlShortSearch).success(function(data){
+            $http.get('/statsUrl/' + res).success(function(data){
                 $scope.stats = data;
             }).error(function (data, status) {
                 console.log('Error ' + data)
@@ -128,10 +132,12 @@ app.controller('searchCtrl', function($scope, $http){
 
 app.controller('visitCtrl', function($scope, $http){
     $scope.visitShortUrl = function(){
-        $http.get('/searchUrl/' + $scope.urlToVisit).success(function(data){
+    var str = $scope.urlToVisit;
+                 var res = str.split('/').join('*');
+        $http.get('/searchUrl/' + res).success(function(data){
             $scope.data = data;
-            $http.post('/visitUrl/' + $scope.urlToVisit).success(function(data2){
-                window.location.href = "" + data.urlLong;
+            $http.post('/visitUrl/' + res).success(function(data2){
+                window.location.href = "" + data2.urlLong;
             })
         }).error(function (data,status) {
                           alert("ShortURL non valido");

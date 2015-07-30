@@ -1,6 +1,7 @@
 import com.sun.corba.se.spi.ior.ObjectKey;
 import entity.ShortUrl;
 import utility.MapUtil;
+import utility.ResetString;
 
 import java.util.*;
 
@@ -109,6 +110,8 @@ public class Stats {
 
     public List<Integer> statsShortUrl(String shortUrl) {
         DAO dao = new DAO();
+        ResetString resetString = new ResetString();
+        shortUrl = resetString.resetString(shortUrl);
         ShortUrl url = dao.find(shortUrl);
         List<Integer> list = new ArrayList<>();
 
