@@ -143,18 +143,17 @@ app.controller('searchCtrl', function($scope, $http){
 
 app.controller('visitCtrl', function($scope, $http){
     $scope.visitShortUrl = function(){
-    var str = $scope.urlToVisit;
-                 var res = str.split('/').join('*');
+        var str = $scope.urlToVisit;
+        var res = str.split('/').join('*');
+
         $http.get('/searchUrl/' + res).success(function(data){
             $scope.data = data;
             $http.post('/visitUrl/' + res).success(function(data2){
                 var str = data.urlLong;
-                alert(str);
-                if (str.substring(0,5) == "http://"){
-                    str = str.substring(6);
-                    alert(str);
+                if (str.substr(0,7) == "http://"){
+                    str = str.substr(7);
                 }
-                    window.location.href = "http://" + str;
+                window.location.href = "http://" + str;
 
 
             })
