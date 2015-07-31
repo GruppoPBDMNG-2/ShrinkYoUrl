@@ -15,11 +15,13 @@ public class BadWords {
     public boolean checkString(String s){
         ResetString resetString = new ResetString();
         s = resetString.resetString(s);
+        boolean ok = true;
         for (int i= 0; i < badWords.length; i++){
             if (s.toLowerCase().contains(badWords[i].toLowerCase())){
-                return false;
+                ok = false;
+                return ok;
             }
         }
-        return true;
+        return ok;
     }
 }
