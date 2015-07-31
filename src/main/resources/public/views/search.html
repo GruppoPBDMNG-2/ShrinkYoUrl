@@ -43,11 +43,11 @@
             <th>Continent</th>
         </tr>
 
-        <tr ng-repeat="city in cities">
+        <tr ng-show="cities.length" ng-repeat="city in arrString track by $index">
             <td>{{$index+1}}</td>
             <td>{{city}}</td>
-            <td>{{countries[$index]}}</td>
-            <td>{{continents[$index]}}</td>
+            <td>{{arrStringCountries[$index]}}</td>
+            <td>{{arrStringCont[$index]}}</td>
         </tr>
         <tr ng-show="!cities.length">
             <td colspan="4"><i>No recent clicks...</i></td>

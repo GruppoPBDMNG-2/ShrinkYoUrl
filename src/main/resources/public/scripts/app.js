@@ -113,9 +113,18 @@ app.controller('searchCtrl', function($scope, $http){
             $http.get('/searchUrl/' + res).success(function(data){
                 $scope.data = data;
                 $scope.bool = true;
-                $scope.cities = data.citiesClicks;
-                $scope.countries = data.countriesClicks;
-                $scope.continents = data.continentsClicks;
+
+                $scope.cities =  '' + data.citiesClicks;
+                $scope.arrString = new Array();
+                $scope.arrString = $scope.cities.split(',');
+
+                $scope.countries = '' + data.countriesClicks;
+                $scope.arrStringCountries = new Array();
+                $scope.arrStringCountries = $scope.countries.split(',');
+                $scope.continents = '' + data.continentsClicks;
+                $scope.arrStringCont = new Array();
+                $scope.arrStringCont = $scope.continents.split(',');
+
             }).error(function (data, status) {
                                   alert("Nessun indirizzo trovato");
                                   $scope.bool = false;
@@ -137,7 +146,15 @@ app.controller('visitCtrl', function($scope, $http){
         $http.get('/searchUrl/' + res).success(function(data){
             $scope.data = data;
             $http.post('/visitUrl/' + res).success(function(data2){
-                window.location.href = "" + data2.urlLong;
+                var str = data.urlLong;
+                alert(str);
+                if (str.substring(0,5) == "http://"){
+                    str = str.substring(6);
+                    alert(str);
+                }
+                    window.location.href = "http://" + str;
+
+
             })
         }).error(function (data,status) {
                           alert("ShortURL non valido");
