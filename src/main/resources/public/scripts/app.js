@@ -88,12 +88,12 @@ $scope.shortUrl = {
             if(data == "true"){
                 $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
                                                 $location.path('/');
-                                                alert("ShortUrl creato");
+                                                alert("ShortUrl " + str +  " created");
                                             }).error(function (data, status) {
                                                 console.log('Error ' + data)
                                             })
             }else{
-                alert("L'url contiene una bad word");
+                alert("Your ShortURL contains a bad word. Please write a new ShortURL or click on \"Generate Short Url\"");
             }
 
          }).error(function(data, status){
@@ -128,7 +128,7 @@ app.controller('searchCtrl', function($scope, $http){
                 $scope.arrStringCont = $scope.continents.split(',');
 
             }).error(function (data, status) {
-                                  alert("Nessun indirizzo trovato");
+                                  alert("No ShortURL found. Please retry");
                                   $scope.bool = false;
                                   console.log('Error ' + data)
                               })
@@ -149,6 +149,7 @@ app.controller('visitCtrl', function($scope, $http){
         $http.get('/searchUrl/' + res).success(function(data){
             $scope.data = data;
             $http.post('/visitUrl/' + res).success(function(data2){
+                window.alert('Redirecting...');
                 var str = data.urlLong;
                 if (str.substr(0,7) == "http://"){
                     str = str.substr(7);
@@ -158,7 +159,7 @@ app.controller('visitCtrl', function($scope, $http){
 
             })
         }).error(function (data,status) {
-                          alert("ShortURL non valido");
+                          alert("No ShortURL found. Please retry");
                           console.log('Error ' + data)
                       })
     }
