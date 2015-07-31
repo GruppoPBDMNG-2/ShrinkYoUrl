@@ -85,13 +85,15 @@ $scope.shortUrl = {
          var str = $scope.shortUrl.urlShort;
          var res = str.split('/').join('*');
          $http.get('/checkBadWords/' + res).success(function(data){
-            if(data){
+            if(data == true){
                 $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
                                                 $location.path('/');
                                                 alert("ShortUrl creato");
                                             }).error(function (data, status) {
                                                 console.log('Error ' + data)
                                             })
+            }else{
+                alert("L'url contiene una bad word");
             }
 
          }).error(function(data, status){
