@@ -28,8 +28,12 @@ app.config(function ($routeProvider) {
     }).when('/stats', {
         templateUrl: 'views/stats.html',
         controller: 'statsCtrl'
+    }).when('/contact', {
+        templateUrl: 'views/contact.html'
+    }).when('/404', {
+        templateUrl: 'views/404.html'
     }).otherwise({
-        redirectTo: '/'
+        redirectTo: '/404'
     })
 });
 
