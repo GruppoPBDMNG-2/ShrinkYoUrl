@@ -30,14 +30,17 @@ public class DAO {
 
 
 
-    public void addShortUrl(String body) {
+    public boolean addShortUrl(String body){
         ShortUrl shortUrl = new Gson().fromJson(body, ShortUrl.class);
         collection.insert(new BasicDBObject(Constants.URL_SHORT_FIELD, shortUrl.getShortUrl())
-                .append(Constants.URL_LONG_FIELD, shortUrl.getLongUrl())
-                .append(Constants.CONTINENTS_FIELD, shortUrl.getContinents())
-                .append(Constants.COUNTRIES_FIELD, shortUrl.getCountries())
-                .append(Constants.CITIES_FIELD, shortUrl.getCities())
-                .append(Constants.CREATED_ON_FIELD, new Date()));
+                    .append(Constants.URL_LONG_FIELD, shortUrl.getLongUrl())
+                    .append(Constants.CONTINENTS_FIELD, shortUrl.getContinents())
+                    .append(Constants.COUNTRIES_FIELD, shortUrl.getCountries())
+                    .append(Constants.CITIES_FIELD, shortUrl.getCities())
+                    .append(Constants.CREATED_ON_FIELD, new Date()));
+        return true;
+
+
 
     }
 
@@ -92,9 +95,9 @@ public class DAO {
     }
 
     private DB mongo() throws Exception {
-        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION);
+        String host = System.getenv(Docker.getIp_docker());
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
+            MongoClient mongoClient = new MongoClient(Docker.getIp_docker());
             return mongoClient.getDB(Constants.NAME_DB);
         }
 

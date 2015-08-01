@@ -126,7 +126,7 @@ public class Stats {
         for (int i = 0; i < url.getContinents().size(); i++) {
             if (url.getContinents().get(i).equals("Europe")) {
                 numClickEur++;
-            } else if (url.getContinents().get(i).equals("America")) {
+            } else if (url.getContinents().get(i).contains("America")) {
                 numClickAmer++;
             } else if (url.getContinents().get(i).equals("Asia")) {
                 numClickAsia++;

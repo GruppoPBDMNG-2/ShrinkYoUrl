@@ -11,7 +11,11 @@ var app = angular.module('todoapp', [
 
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'views/home.html'
+        controller: 'dockerCtrl',
+        templateUrl: 'views/docker.html'
+    }).when('/home', {
+        templateUrl: 'views/home.html',
+        controller: 'homeCtrl'
     }).when('/create', {
         templateUrl: 'views/add_short_url.html',
         controller: 'addCtrl'
@@ -29,49 +33,27 @@ app.config(function ($routeProvider) {
     })
 });
 
-
-app.controller('ListCtrl', function ($scope, $http) {
-    $http.get('/api/v1/todos').success(function (data) {
-        $scope.todos = data;
-    }).error(function (data, status) {
-        console.log('Error ' + data)
-    })
-
-    $scope.todoStatusChanged = function (todo) {
-        console.log(todo);
-        $http.put('/api/v1/todos/' + todo.id, todo).success(function (data) {
-            console.log('status changed');
-        }).error(function (data, status) {
-            console.log('Error ' + data)
-        })
-    }
-});
-
-app.controller('CreateCtrl', function ($scope, $http, $location) {
-    $scope.todo = {
-        done: false
-    };
-
-    $scope.createTodo = function () {
-        console.log($scope.todo);
-        $http.post('/api/v1/todos', $scope.todo).success(function (data) {
+app.controller('homeCtrl', function($scope, $http, $location){
+    $http.get('/checkFirstAccess').success(function(data){
+        if (data == 'true'){
             $location.path('/');
-        }).error(function (data, status) {
-            console.log('Error ' + data)
-        })
-    }
-
-});
+        }
+    })
+})
 
 app.controller('addCtrl', function($scope, $http, $location) {
 
-$scope.shortUrl = {
+    $scope.shortUrl = {
         continentsClicks: [],
         countriesClicks: [],
         citiesClicks: []
    }
 
    $scope.autoGenerate  = function() {
+        var strLong = $scope.shortUrl.urlLong;
+                 if (strLong.substr(0,7) == "http://"){
+                     $scope.shortUrl.urlLong = strLong.substr(7);
+                 }
         $http.get('/autoGenerate/' + $scope.shortUrl.urlLong).success(function(data){
                         var str = data;
                         var res = str.substring(1, str.length-1);
@@ -82,16 +64,26 @@ $scope.shortUrl = {
    }
 
    $scope.addShortUrl = function(){
+         var strLong = $scope.shortUrl.urlLong;
+         if (strLong.substr(0,7) == "http://"){
+             $scope.shortUrl.urlLong = strLong.substr(7);
+         }
          var str = $scope.shortUrl.urlShort;
          var res = str.split('/').join('*');
          $http.get('/checkBadWords/' + res).success(function(data){
             if(data == "true"){
-                $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
-                                                $location.path('/');
-                                                alert("ShortUrl " + str +  " created");
-                                            }).error(function (data, status) {
-                                                console.log('Error ' + data)
-                                            })
+                 $http.get('/searchUrl/' + res).success(function(data2){
+                     alert("ShortURL " + res + " already exists");
+                 }).error(function(data, status){
+                    $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
+                        $location.path('/home');
+                        alert("ShortUrl " + str +  " created");
+                    }).error(function (data, status) {
+                        console.log('Error ' + data)
+                    })
+                    console.log('Error ' + data)
+                 })
+
             }else{
                 alert("Your ShortURL contains a bad word. Please write a new ShortURL or click on \"Generate Short Url\"");
             }
@@ -165,7 +157,31 @@ app.controller('visitCtrl', function($scope, $http){
     }
 });
 
-app.controller('statsCtrl', function($scope, $http){
+app.controller('dockerCtrl', function($scope, $http, $location){
+    $scope.docker_machine = function(){
+        $http.get('/setDocker/' + 'docker-machine').success(function(data){
+                    $location.path('/home');
+                }).error(function(data, status){
+                           console.log('Error ' + data);
+                       })
+    }
+
+    $scope.boot2docker = function(){
+        $http.get('/setDocker/' + 'boot2docker').success(function(data){
+            $location.path('/home');
+        }).error(function(data, status){
+                   console.log('Error ' + data);
+               })
+    }
+})
+
+app.controller('statsCtrl', function($scope, $http, $location){
+    $http.get('/checkFirstAccess').success(function(data){
+            if (data == 'true'){
+                $location.path('/');
+            }
+        })
+
     var cont = new String("all");
     $http.get('/statsGlobal/getUrls/' + cont).success(function(data){
         $scope.urls = data;

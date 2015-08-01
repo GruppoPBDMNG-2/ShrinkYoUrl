@@ -36,6 +36,21 @@ public class GeoIPReader {
 
     }
 
+    public GeoIPReader(String ip){
+        String path = System.getProperty("user.dir") + "/geoip_db/GeoLite2-City.mmdb";
+        File database = new File(path);
+
+        try {
+            DatabaseReader reader = new DatabaseReader.Builder(database).build();
+            ipAddress = InetAddress.getByName(ip);
+            response = reader.city(ipAddress);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (GeoIp2Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public String getCity(){
         return String.valueOf(response.getCity());
     }
