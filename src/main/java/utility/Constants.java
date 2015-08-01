@@ -5,7 +5,7 @@ package utility;
  */
 public class Constants {
     public static final String IP_ADDRESS_SPARK = "localhost";
-    public static final int PORT_SPARK= 8180;
+    public static final int PORT_SPARK= 8080;
 
     public static final String ADDRESS_MONGO_CONNECTION = "192.168.99.100";
     public static final String ADDRESS_MONGO_CONNECTION_BOOT2DOCKER = "192.168.59.103";
