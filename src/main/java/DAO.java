@@ -93,25 +93,10 @@ public class DAO {
     private DB mongo() throws Exception {
         String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
+            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO);
             return mongoClient.getDB(Constants.NAME_DB);
         }
 
-        /* Codice non funzionante boot2docker
-        if (host == null) {
-            host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
-            if (host == null){
-                MongoClient mongoClient = null;
-                try {
-                    mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION);
-                } catch (UnknownHostException e) {
-                    mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
-                }
-                return mongoClient.getDB(Constants.NAME_DB);
-            }
-
-        }
-         */
         int port = Integer.parseInt(Constants.PORT_DB);
         MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
         MongoClient mongoClient = new MongoClient(new ServerAddress(host, port), mongoClientOptions);
