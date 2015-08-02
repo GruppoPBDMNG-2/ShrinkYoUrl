@@ -29,7 +29,6 @@ public class DAO {
     }
 
 
-
     public boolean addShortUrl(String body){
         ShortUrl shortUrl = new Gson().fromJson(body, ShortUrl.class);
         collection.insert(new BasicDBObject(Constants.URL_SHORT_FIELD, shortUrl.getShortUrl())
@@ -39,9 +38,6 @@ public class DAO {
                     .append(Constants.CITIES_FIELD, shortUrl.getCities())
                     .append(Constants.CREATED_ON_FIELD, new Date()));
         return true;
-
-
-
     }
 
     public ShortUrl update(String id){
@@ -95,9 +91,9 @@ public class DAO {
     }
 
     private DB mongo() throws Exception {
-        String host = System.getenv(Docker.getIp_docker());
+        String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
         if (host == null) {
-            MongoClient mongoClient = new MongoClient(Docker.getIp_docker());
+            MongoClient mongoClient = new MongoClient(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
             return mongoClient.getDB(Constants.NAME_DB);
         }
 

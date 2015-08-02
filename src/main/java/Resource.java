@@ -31,9 +31,6 @@ public class Resource {
         get("/autoGenerate/:id", "applications/json", (request, response)
                 -> (dao.autoGenerate(request.params(":id"))), new JsonTransformer());
 
-        get("/setDocker/:id", "applications/json", (request, response)
-                -> (Docker.setIp_docker(request.params(":id"))), new JsonTransformer());
-
         get("/searchUrl/:id", "applications/json", (request, response)
                 -> (dao.find(request.params(":id"))),new JsonTransformer());
 
@@ -49,8 +46,6 @@ public class Resource {
         get("/checkBadWords/:string",  "applications/json", (request, response)
                 -> (badWords.checkString(request.params(":string"))), new JsonTransformer());
 
-        get("/checkFirstAccess", "applications/json", (request, response)
-                -> (Docker.isFirstAccess()), new JsonTransformer());
     }
 
 }

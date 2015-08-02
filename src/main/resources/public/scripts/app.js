@@ -11,9 +11,6 @@ var app = angular.module('todoapp', [
 
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
-        controller: 'dockerCtrl',
-        templateUrl: 'views/docker.html'
-    }).when('/home', {
         templateUrl: 'views/home.html',
         controller: 'homeCtrl'
     }).when('/create', {
@@ -80,7 +77,7 @@ app.controller('addCtrl', function($scope, $http, $location) {
                      alert("ShortURL " + res + " already exists");
                  }).error(function(data, status){
                     $http.post('/addShortUrl', $scope.shortUrl).success(function (data) {
-                        $location.path('/home');
+                        $location.path('/');
                         alert("ShortUrl " + str +  " created");
                     }).error(function (data, status) {
                         console.log('Error ' + data)
@@ -161,23 +158,6 @@ app.controller('visitCtrl', function($scope, $http){
     }
 });
 
-app.controller('dockerCtrl', function($scope, $http, $location){
-    $scope.docker_machine = function(){
-        $http.get('/setDocker/' + 'docker-machine').success(function(data){
-                    $location.path('/home');
-                }).error(function(data, status){
-                           console.log('Error ' + data);
-                       })
-    }
-
-    $scope.boot2docker = function(){
-        $http.get('/setDocker/' + 'boot2docker').success(function(data){
-            $location.path('/home');
-        }).error(function(data, status){
-                   console.log('Error ' + data);
-               })
-    }
-})
 
 app.controller('statsCtrl', function($scope, $http, $location){
     $http.get('/checkFirstAccess').success(function(data){
