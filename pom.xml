@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
 
   <build>
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -65,7 +66,7 @@
             <classpath/>
             <argument>ServerConnection</argument>
             <argument>server</argument>
-            <argument>ShrinikYoUrl.yml</argument>
+            <argument>ShrinkYoUrl.yml</argument>
           </arguments>
         </configuration>
       </plugin>
@@ -96,7 +97,7 @@
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>URLShortener.App</mainClass>
+                  <mainClass>ServerConnection</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -140,13 +141,6 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.2.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
     </dependency>
 
     <dependency>

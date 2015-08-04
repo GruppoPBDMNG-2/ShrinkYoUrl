@@ -1,6 +1,8 @@
 FROM mongo
 
 #ports
+EXPOSE 27017
+EXPOSE 27018
 EXPOSE 8080
 
 #Get repositories for java8
@@ -28,7 +30,7 @@ RUN mv /ShrinkYoUrlTest/src/main/resources/public /
 
 #create the start server file and make it executable
 RUN echo '#!/bin/bash' >> /start-server
-RUN echo 'cd /src/main/java' >> /start-server
+RUN echo 'cd ShrinkYoUrlTest' >> /start-server
 RUN echo 'mvn package' >> /start-server
-RUN echo 'java -jar target/ShrinkYoUrl.jar' >> /start-server
+RUN echo 'java -jar target/spark-server-1.0-SNAPSHOT-shaded.jar' >> /start-server
 RUN chmod 755 /start-server
