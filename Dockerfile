@@ -28,7 +28,7 @@ RUN mv /ShrinkYoUrlTest/src/main/resources/public /
 
 #create the start server file and make it executable
 RUN echo '#!/bin/bash' >> /start-server
-RUN echo 'cd /src/main/java' >> /start-server
+RUN echo 'cd ShrinkYoUrlTest/src/main/java' >> /start-server
 RUN echo 'mvn package' >> /start-server
 RUN echo 'java -jar target/ShrinkYoUrl.jar' >> /start-server
 RUN chmod 755 /start-server
