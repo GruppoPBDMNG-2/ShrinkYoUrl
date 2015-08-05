@@ -1,9 +1,3 @@
-## MongoDB Dockerfile
-
-
-This repository contains **Dockerfile** of [MongoDB](http://www.mongodb.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/dockerfile/mongodb/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
-
-
 ### Base Docker Image
 
 * [dockerfile/ubuntu](http://dockerfile.github.io/#/ubuntu)
@@ -20,25 +14,12 @@ This repository contains **Dockerfile** of [MongoDB](http://www.mongodb.org/) fo
 
 ### Usage
 
-#### Run `mongod`
-
-    docker run -d -p 27017:27017 --name mongodb dockerfile/mongodb
-
-#### Run `mongod` w/ persistent/shared directory
-
-    docker run -d -p 27017:27017 -v <db-dir>:/data/db --name mongodb dockerfile/mongodb
-
-#### Run `mongod` w/ HTTP support
-
-    docker run -d -p 27017:27017 -p 28017:28017 --name mongodb dockerfile/mongodb mongod --rest --httpinterface
-
-#### Run `mongod` w/ Smaller default file size
-
-    docker run -d -p 27017:27017 --name mongodb dockerfile/mongodb mongod --smallfiles
-
-#### Run `mongo`
-
-    docker run -it --rm --link mongodb:mongodb dockerfile/mongodb bash -c 'mongo --host mongodb'
+    docker build -t gruppo_pbdmng-2/shrinkyourl .
+    docker run -d -p 8080:8080 -p 27017:27017 --name=shrinkyourl gruppo_pbdmng-2/shrinkyourl
+    docker exec -it shrinkyourl bash
+    ./start
+    ./test
+   
 
 ##### Usage with VirtualBox (boot2docker-vm)
 

@@ -1,9 +1,3 @@
-#
-# MongoDB Dockerfile
-#
-# https://github.com/dockerfile/mongodb
-#
-
 # Pull base image.
 FROM ubuntu:latest
 
@@ -60,9 +54,15 @@ ADD geoip_db /code/geoip_db
 ADD src/main/resources/public /code/public
 
 #create the start server file and make it executable
-RUN echo '#!/bin/bash' >> /start-server
-RUN echo 'mvn package' >> /start-server
-RUN echo 'java -jar target/ShrinkYoUrl-jar-with-dependencies.jar' >> /start-server
-RUN chmod 755 /start-server
+RUN echo '#!/bin/bash' >> /start
+RUN echo 'mvn package' >> /start
+RUN echo 'java -jar target/ShrinkYoUrl-jar-with-dependencies.jar' >> /start
+RUN chmod 755 /start
 
-RUN mv /start-server /code
+#create a test script and make it executable
+RUN echo '#!/bin/bash' >> /test
+RUN echo 'mvn test' >> /test
+RUN chmod 755 /test
+
+RUN mv /start /code
+RUN mv /test /code
