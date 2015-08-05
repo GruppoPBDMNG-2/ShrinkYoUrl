@@ -4,7 +4,7 @@ package utility;
  * Created by Manu on 19/07/15.
  */
 public class Constants {
-    public static final String IP_ADDRESS_SPARK = "localhost";
+    public static final String IP_ADDRESS_SPARK = "0.0.0.0";
     public static final int PORT_SPARK= 8080;
 
     public static final String ADDRESS_MONGO_CONNECTION_DOCKER_MACHINE = "192.168.99.100";
