@@ -14,7 +14,10 @@ public class TestDAO extends TestCase {
                     "\"urlLong\":\"http://facebook.com\", " + "\"urlShort\": \"http://fb.com\"}",
             "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
                     "\"urlLong\":\"http://facebook.com/\", \"urlShort\": \"fb.com/\"}",
-
+            "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
+                    "\"urlLong\":\"http://gm.com/\", \"urlShort\": \"https://mail.google.com/\"}",
+            "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
+                    "\"urlLong\":\"http://yt.com/\", \"urlShort\": \"https://www.youtube.com//\"}",
     };
 
     private String[] toFind = {
