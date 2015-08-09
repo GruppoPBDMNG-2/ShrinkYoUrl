@@ -14,6 +14,9 @@
 
 ### Usage
 
+    git clone https://github.com/GruppoPBDMNG-2/ShrinkYoUrl
+    cd ShrinkYoURl
+
     docker build -t gruppo_pbdmng-2/shrinkyourl .
     docker run -d -p 8080:8080 -p 27017:27017 --name=shrinkyourl gruppo_pbdmng-2/shrinkyourl
     docker exec -it shrinkyourl bash

@@ -8,10 +8,6 @@ public class TestDAO extends TestCase {
     private DAO dao;
 
     private String[] shortUrls = {
-            "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], \"urlLong\":\"facebook.com\", " +
-                    "\"urlShort\": \"fb.com\"}",
-            "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
-                    "\"urlLong\":\"http://facebook.com\", " + "\"urlShort\": \"http://fb.com\"}",
             "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
                     "\"urlLong\":\"http://facebook.com/\", \"urlShort\": \"fb.com/\"}",
             "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
@@ -22,8 +18,8 @@ public class TestDAO extends TestCase {
 
     private String[] toFind = {
             "fb.com",
-            "fb.com",
-            "fb.com"
+            "gm.com",
+            "yt.com"
     };
 
     protected void setUp() throws Exception {
