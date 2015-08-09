@@ -9,11 +9,11 @@ public class TestDAO extends TestCase {
 
     private String[] shortUrls = {
             "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
-                    "\"urlLong\":\"http://facebook.com/\", \"urlShort\": \"fb.com/\"}",
+                    "\"urlLong\":\"http://facebook.com/\", \"urlShort\": \"fb.com\"}",
             "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
-                    "\"urlLong\":\"http://gm.com/\", \"urlShort\": \"https://mail.google.com/\"}",
+                    "\"urlLong\":\"https://mail.google.com\", \"urlShort\": \"gm.com\"}",
             "{\"continentsClicks\":[], \"countriesClicks\":[], \"citiesClicks\":[], " +
-                    "\"urlLong\":\"http://yt.com/\", \"urlShort\": \"https://www.youtube.com//\"}",
+                    "\"urlLong\":\"https://www.youtube.com\", \"urlShort\": \"yt.com\"}",
     };
 
     private String[] toFind = {
