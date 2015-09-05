@@ -10,17 +10,38 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Manu on 17/07/15.
+ * Classe per l'entity shortUrl
  */
 public class ShortUrl {
     @SerializedName("shortUrl")
 
+    /**
+     * id dello shortUrl
+     */
     private String id;
+    /**
+     * versione ridotta dell'url
+     */
     private String  urlShort;
+    /**
+     * versione estesa dell'url
+     */
     private String urlLong;
+    /**
+     * array di continenti da cui è stato visitato lo shortUrl
+     */
     private List<String> continentsClicks;
+    /**
+     * array di nazioni da cui è stato visitato lo shortUrl
+     */
     private List<String> countriesClicks;
+    /**
+     * array di città da cui è stato visitato lo shortUrl
+     */
     private List<String> citiesClicks;
+    /**
+     * data di creazione dello shortUrl
+     */
     private Date createdOn = new Date();
 
     public ShortUrl(BasicDBObject dbObject) {

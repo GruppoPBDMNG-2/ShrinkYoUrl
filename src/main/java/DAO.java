@@ -10,13 +10,17 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Manu on 17/07/15.
+ * Classe DAO contenente tutte le operazioni che si possono effettuare sul database
  */
 public class DAO {
     private DB db;
 
     private DBCollection collection;
 
+    /**
+     * Costruttore che crea una nuova connessione al database e seleziona la collection
+     * su cui saranno effettuate tutte le operazioni
+     */
     public DAO() {
         try {
 
@@ -29,6 +33,11 @@ public class DAO {
     }
 
 
+    /**
+     * Metodo per l'aggiunta di uno shortUrl al database
+     * @param body Json contenente i dati della nuova istanza
+     * @return true se l'operazione va a buon fine
+     */
     public boolean addShortUrl(String body){
         ShortUrl shortUrl = new Gson().fromJson(body, ShortUrl.class);
         collection.insert(new BasicDBObject(Constants.URL_SHORT_FIELD, shortUrl.getShortUrl())
@@ -40,6 +49,11 @@ public class DAO {
         return true;
     }
 
+    /**
+     * Metodo per la modifica di uno shortUrl già presente nel database
+     * @param id versione ridotta dell'url da modificare
+     * @return lo shortUrl modificato
+     */
     public ShortUrl update(String id){
         ResetString resetString = new ResetString();
         id = resetString.resetString(id);
@@ -63,6 +77,10 @@ public class DAO {
         return this.find(id);
     }
 
+    /**
+     * Metodo per la stampa a video di tutte le istanze del database
+     * @return lista degli shortUrl presenti nel database
+     */
     public List<ShortUrl> findAll(){
         List<ShortUrl> urls = new ArrayList<>();
         DBCursor dbObjects = collection.find();
@@ -73,6 +91,11 @@ public class DAO {
         return urls;
     }
 
+    /**
+     * Metodo per autogenerare un nuovo shortUrl non ancora presente nel database
+     * @param id longUrl di cui si vuole creare lo shortUrl
+     * @return shortUrl generato
+     */
     public String autoGenerate(String id){
         String string = new String("http://shrinkYo.Url/");
         String shortUrl;
@@ -84,12 +107,22 @@ public class DAO {
         return string;
     }
 
+    /**
+     * Metodo per la ricerca dei dati relativi ad uno shortUrl
+     * @param id versione ridotta dell'url di cui si vuole ottenere informazioni
+     * @return istanza del database relativa all'url ricercato
+     */
     public ShortUrl find(String id){
         ResetString resetString = new ResetString();
         id = resetString.resetString(id);
         return new ShortUrl((BasicDBObject) collection.findOne(new BasicDBObject("urlShort", id)));
     }
 
+    /**
+     * Metodo per la connessione al database MongoDB
+     * @return istanza del database
+     * @throws Exception
+     */
     private DB mongo() throws Exception {
         String host = System.getenv(Constants.ADDRESS_MONGO_CONNECTION_BOOT2DOCKER);
         if (host == null) {

@@ -5,7 +5,7 @@ import com.mongodb.BasicDBObject;
 import java.util.Random;
 
 /**
- * Created by Roger on 29/07/2015.
+ * Classe per generare stringhe casuali
  */
 public class RandomString {
     private final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -15,6 +15,10 @@ public class RandomString {
 
     }
 
+    /**
+     * Metodo per generare una stringa casuale
+     * @return stringa generata
+     */
     public String randomString(){
         StringBuilder sb = new StringBuilder(6);
             for (int i = 0; i < 6; i++)

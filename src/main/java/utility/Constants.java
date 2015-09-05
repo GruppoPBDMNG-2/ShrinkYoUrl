@@ -1,7 +1,7 @@
 package utility;
 
 /**
- * Created by Manu on 19/07/15.
+ * Classe contenenti costanti del sistema
  */
 public class Constants {
     public static final String IP_ADDRESS_SPARK = "0.0.0.0";

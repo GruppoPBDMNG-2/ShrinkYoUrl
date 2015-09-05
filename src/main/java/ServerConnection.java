@@ -5,7 +5,7 @@ import static spark.SparkBase.setPort;
 import static spark.SparkBase.staticFileLocation;
 
 /**
- * Created by Manu on 17/07/15.
+ * Classe per eseguire il server
  */
 public class ServerConnection {
 

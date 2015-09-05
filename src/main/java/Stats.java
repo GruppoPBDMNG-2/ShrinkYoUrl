@@ -6,7 +6,7 @@ import utility.ResetString;
 import java.util.*;
 
 /**
- * Created by Manu on 28/07/15.
+ * Classe per calcolare le statistiche
  */
 public class Stats {
     private int numClickUrl;
@@ -16,8 +16,10 @@ public class Stats {
     private int numClickOce;
     private int numClickAsia;
 
-
-
+    /**
+     * Metodo per ottenere un map di shortUrl ordinati in ordine decrescente per numero di visite
+     * @return map degli shortUrl più visitati in tutto il mondo
+     */
     private Map<ShortUrl, Integer> mostClicked(){
         DAO dao = new DAO();
         List<ShortUrl> urls = dao.findAll();
@@ -34,6 +36,11 @@ public class Stats {
         return mapSorted;
     }
 
+    /**
+     * Metodo per ottenere un map di shortUrl ordinati in ordine decrescente per numero di visite relative ad un
+     * determinato continente continente di cui si vogliono sapere gli url più visitati
+     * @return map degli shortUrl più visitati nel continente in input
+     */
     private Map<ShortUrl, Integer> mostClicked(String cont){
         DAO dao = new DAO();
         List<ShortUrl> urls = dao.findAll();
@@ -57,6 +64,11 @@ public class Stats {
         return mapSorted;
     }
 
+    /**
+     * Metodo che ritorna una lista degli url più visitati in un determinato continente o nel mondo
+     * @param cont continente di riferimento. Se cont = "" verrà generata una lista degli url più visitati nel mondo
+     * @return lista di shortUrl più visitati  ordinati in ordine decrescente per numero di visite
+     */
     public List<ShortUrl> getShortUrlsMostClicked(String cont){
         List<ShortUrl> urls = new ArrayList<>();
 
@@ -83,6 +95,11 @@ public class Stats {
         return urls;
     }
 
+    /**
+     * Metodo che ritorna una lista del numero di visite di ogni url
+     * @param cont continente di riferimento. Se cont = "" verrà generata una lista degli url più visitati nel mondo
+     * @return lista dei contatori dei numero di visite degli shortUrl più visitati
+     */
     public List<Integer> getCountsMostClicked(String cont){
         List<Integer> counts = new ArrayList<>();
         Map mapSorted;
@@ -108,6 +125,11 @@ public class Stats {
         return counts;
     }
 
+    /**
+     * Metodo per ottenere tutte le statistiche relative ad uno shortUrl
+     * @param shortUrl shortUrl di cui si vogliono ottenere le statistiche
+     * @return lista di statistiche relative allo shortUrl in input
+     */
     public List<Integer> statsShortUrl(String shortUrl) {
         DAO dao = new DAO();
         ResetString resetString = new ResetString();

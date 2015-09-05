@@ -1,8 +1,18 @@
 package utility;
 import java.util.*;
 
+/**
+ * Classe per l'ordinamento di elementi contenunti in map
+ */
 public class MapUtil
 {
+    /**
+     * Metodo che ordina gli elementi della map in ordine decresente
+     * @param map map da ordinare
+     * @param <K> tipo della chiave del map
+     * @param <V> tipo del valore del map
+     * @return map con elementi ordinati in ordine decrescente
+     */
     public static <K, V extends Comparable<? super V>> Map<K, V>
     sortByValue( Map<K, V> map )
     {

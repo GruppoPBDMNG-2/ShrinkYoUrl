@@ -13,11 +13,12 @@ import java.net.InetAddress;
 import java.net.URL;
 
 /**
- * Created by Manu on 15/07/15.
+ * Classe per rilevare l'indirizzo IP e ottenere informazioni quali continente, nazione e città
  */
 public class GeoIPReader {
     InetAddress ipAddress;
     CityResponse response;
+
 
     public GeoIPReader(){
         String path = System.getProperty("user.dir") + "/geoip_db/GeoLite2-City.mmdb";
@@ -63,10 +64,10 @@ public class GeoIPReader {
         return String.valueOf(response.getContinent());
     }
 
-
-
-
-
+    /**
+     * Classe per ottenere l'indirizzo IP
+     * @return indirizzo IP
+     */
     private String getIpAddress()
     {
         URL myIP;
