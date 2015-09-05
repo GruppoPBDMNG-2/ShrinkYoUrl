@@ -1,33 +1,34 @@
 ### Base Docker Image
 
-* [dockerfile/ubuntu](http://dockerfile.github.io/#/ubuntu)
+    ubuntu:latest
+    
+### Prerequisiti
+- Docker installato
+- Porte 8080 e 27017 inoltrate, sia lato host che lato guest, sull'indirizzo 127.0.0.1
 
+### Utilizzo
 
-### Installation
+1. Clonare il repository
 
-1. Install [Docker](https://www.docker.com/).
+   <pre> git clone https://github.com/GruppoPBDMNG-2/ShrinkYoUrl</pre>
 
-2. Download [automated build](https://registry.hub.docker.com/u/dockerfile/mongodb/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull dockerfile/mongodb`
+2. Entrare nella cartella ShrinkYoUrl
+   <pre> cd ShrinkYoUrl </pre>
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/mongodb" github.com/dockerfile/mongodb`)
+3. Eseguire il comando build
+   <pre> docker build -t gruppo_pbdmng-2/shrinkyourl . </pre>
 
+4. Creare il container utilizzando l'immagine appena creata
+   <pre> docker run -d -p 8080:8080 -p 27017:27017 --name=shrinkyourl gruppo_pbdmng-2/shrinkyourl </pre>
 
-### Usage
+5. Eseguire il container
+   <pre> docker exec -it shrinkyourl bash </pre>
 
-    git clone https://github.com/GruppoPBDMNG-2/ShrinkYoUrl
-    cd ShrinkYoURl
+6. Lanciare uno dei seguenti comandi:
+   <pre> ./start </pre>
+   se si vuole eseguire il server oppure
+   <pre> ./test </pre>
+   nel caso in cui si vogliano eseguire soltanto i test
 
-    docker build -t gruppo_pbdmng-2/shrinkyourl .
-    docker run -d -p 8080:8080 -p 27017:27017 --name=shrinkyourl gruppo_pbdmng-2/shrinkyourl
-    docker exec -it shrinkyourl bash
-    ./start
-    ./test
-   
-
-##### Usage with VirtualBox (boot2docker-vm)
-
-_You will need to set up nat port forwarding with:_  
-
-    VBoxManage modifyvm "boot2docker-vm" --natpf1 "guestmongodb,tcp,127.0.0.1,27017,,27017"
-
-This will allow you to connect to your mongo container with the standard `mongo` commands.
+7. Per accedere al server, inserire all'interno della barra degli indirizzi del proprio browser il seguente indirizzo:
+   <pre> localhost:8080 </pre>
