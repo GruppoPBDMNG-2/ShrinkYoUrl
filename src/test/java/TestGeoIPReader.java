@@ -4,6 +4,11 @@ import utility.GeoIPReader;
 /**
  * Created by Manu on 01/08/15.
  */
+
+/**
+ * Test per verificare il corretto funzionamento di GeoIPReader con vari indirizzi IP
+ * provenienti da più parti del mondo
+ */
 public class TestGeoIPReader extends TestCase {
     private GeoIPReader geoIPReader;
 
@@ -57,6 +62,9 @@ public class TestGeoIPReader extends TestCase {
         super.tearDown();
     }
 
+    /**
+     * metodo per testare il funzionamento di getContinent e getCountry
+     */
     public void testGeoIPReader() {
         for (int i = 0; i < cases.length; i++){
             geoIPReader = new GeoIPReader(cases[i]);

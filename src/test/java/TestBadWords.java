@@ -4,15 +4,18 @@
 import junit.framework.TestCase;
 import utility.BadWords;
 
+/**
+ * Test per la classe che controlla se all'interno di una stringa c'è una badWord
+ */
 public class TestBadWords extends TestCase {
 
     private BadWords badWords;
 
     private String[] cases = {
             "word",
-            "mangiarse",
+            "mangiarse", //badwords alla fine della stringa
             "paxxxo",
-            "casses",
+            "casses", //badwords alla fine della stringa
             "bombies",
             "banana",
             "car",
@@ -51,6 +54,10 @@ public class TestBadWords extends TestCase {
         super.tearDown();
     }
 
+    /**
+     * metodo per testare il corretto funzionamento del metodo checkString all'interno della
+     * classe badWords
+     */
     public void testCheckString(){
         for(int i = 0; i < cases.length; i++){
             assertEquals("Test " + i + " failed", results[i], badWords.checkString(cases[i]));

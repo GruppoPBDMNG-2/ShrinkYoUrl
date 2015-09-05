@@ -4,6 +4,10 @@ import junit.framework.TestCase;
 /**
  * Created by Roger on 01/08/2015.
  */
+
+/**
+ * Test per verificare il corretto funzionamento della classe DAO.
+ */
 public class TestDAO extends TestCase {
     private DAO dao;
 
@@ -31,6 +35,9 @@ public class TestDAO extends TestCase {
         super.tearDown();
     }
 
+    /**
+     * Metodo per testare sia il metodo addShortUrl, sia il metodo find
+     */
     public void testCheckDAO() {
         for (int i = 0; i < shortUrls.length; i++) {
             dao.addShortUrl(shortUrls[i]);
