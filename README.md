@@ -30,5 +30,5 @@
    <pre> ./test </pre>
    nel caso in cui si vogliano eseguire soltanto i test
 
-7. Per accedere al server, inserire all'interno della barra degli indirizzi del proprio browser il seguente indirizzo:
+7. Per accedere al client, inserire, all'interno della barra degli indirizzi del proprio browser, il seguente indirizzo:
    <pre> localhost:8080 </pre>
