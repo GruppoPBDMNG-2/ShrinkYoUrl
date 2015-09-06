@@ -4,7 +4,9 @@
     
 ### Prerequisiti
 - Docker installato
-- Porte 8080 e 27017 inoltrate, sia lato host che lato guest, sull'indirizzo 127.0.0.1
+- Porte 8080 e 27017 inoltrate con protocollo TCP, sia lato host che lato guest, sull'indirizzo 127.0.0.1
+
+N.B. Impostare 127.0.0.1 solo come IP dell'host, lasciando l'IP del guest settato a . . . .
 
 ### Utilizzo
 
